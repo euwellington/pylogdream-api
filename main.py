@@ -9,4 +9,6 @@ from src.controller.Nota import *
 from src.controller.Endereco import *
 from src.controller.Socket import *
 
+server.api.route()
+
 server.run()

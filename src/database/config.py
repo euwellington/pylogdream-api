@@ -1,5 +1,7 @@
-from src.service import app
+from src.service.instance import server
 from flaskext.mysql import MySQL
+
+app = server.app
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'u5mmcrfkc6uvbx9e'
