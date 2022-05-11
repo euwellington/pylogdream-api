@@ -12,10 +12,10 @@ class UsuarioService:
     
     def create(u) -> None:
         usuario = UsuarioInterface(u)
-        try:    
-            # return usuario.object()
-            if(UsuarioRepository.post(usuario.object())):
-                return usuario
-            return 'Erro ao cadastrar usuário'
+        try:  
+            response = UsuarioRepository.post(usuario.object())
+            if response == u:
+                return True
+            return response.args
         except Exception as err:
             return err

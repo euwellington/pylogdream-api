@@ -9,6 +9,5 @@ class Script():
 
     def create(u):
         usuario = UsuarioInterface(u)
-        query = 'SELECT * FROM eventos{0}'.format(usuario.nome)
-        
+        query = "INSERT INTO usuarios (id, equipamentoId, nome, cpf, email, nascimento, senha, dataCadastro) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')".format(usuario.id, usuario.equipamentoId, usuario.nome, usuario.cpf, usuario.email, usuario.nascimento, usuario.senha, datetime.now()) 
         return query

@@ -11,9 +11,9 @@ class UsuarioRepository:
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(Script.getAll())
             empRows = cursor.fetchall()
-            respone = jsonify(empRows)
-            respone.status_code = 200
-            return respone
+            response = jsonify(empRows)
+            response.status_code = 200
+            return empRows
         except Exception as err:
             return err
         finally:
@@ -22,15 +22,14 @@ class UsuarioRepository:
 
     def post(user):
         try:
-            a = Script.create(user)
-            b = a
-            print(b)
-            # conn = mysql.connect():
-            # cursor = conn.cursor(pymysql.cursors.DictCursor)
-            # cursor.execute(Script.create(user))
-            # conn.commit()
-            return True
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(Script.create(user))
+            conn.commit()
+            print(user)
+            return user
         except Exception as err:
+            print(err)
             return err
         # finally:
         #     cursor.close() 

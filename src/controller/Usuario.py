@@ -1,4 +1,7 @@
 import hashlib
+import json
+
+import flask
 from src.repository.scripts import Evento
 from src.service.instance import server
 from flask_restx import Resource, Namespace
@@ -28,7 +31,11 @@ class ControllerAll(Resource):
             usuario = UsuarioInterface(api.payload)
             usuario.id = str(uuid4())
             usuario.senha = hashlib.sha256(usuario.senha.encode('utf-8')).hexdigest()
-            return UsuarioService.create(usuario.object())
+            response = UsuarioService.create(usuario.object())
+            if response != True:
+                return flask.Response(response=response[1], status=400)
+            return usuario.object()
+            
         except Exception as err:
             return err
 
